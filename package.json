@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.3.0",
     "@react-spring/three": "^9.2.4",
     "@react-three/drei": "^7.12.1",
     "@react-three/fiber": "^7.0.7",
@@ -35,6 +34,14 @@
     "workbox-routing": "^6.4.2",
     "workbox-strategies": "^6.4.2",
     "workbox-streams": "^6.4.2"
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.3.0",
+    "craco-sass-resources-loader": "^1.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-import": "^2.25.4"
   },
   "scripts": {
     "start": "craco start",

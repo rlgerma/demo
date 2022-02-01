@@ -1,5 +1,4 @@
-import "@app/App.scss";
-import Demo from "@pages/demo/Demo";
+import Demo from "../pages/demo";
 
 function App() {
   return (
