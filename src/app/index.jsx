@@ -1,9 +1,9 @@
-import Demo from "../pages/demo";
+import Game from "../pages/demo";
 
 function App() {
   return (
     <div>
-      <Demo />
+      <Game />
     </div>
   );
 }

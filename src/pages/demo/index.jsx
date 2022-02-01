@@ -11,9 +11,9 @@ import Header from "../../components/Header";
 // soft Shadows
 softShadows();
 
-const SpinningMesh = ({ position, color, speed, args }: any) => {
+const SpinningMesh = ({ position, color, speed, args }) => {
   //ref to target the mesh
-  const mesh: any = useRef();
+  const mesh = useRef();
 
   //useFrame allows us to re-render/update rotation on each frame
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
@@ -25,39 +25,35 @@ const SpinningMesh = ({ position, color, speed, args }: any) => {
     scale: expand ? 1.4 : 1,
   });
   return (
-    <animated.mesh
-      position={position}
-      ref={mesh}
-      onClick={() => setExpand(!expand)}
-      scale={props.scale}
-      castShadow
-    >
-      <boxBufferGeometry attach='geometry' args={args} />
-      <MeshWobbleMaterial
-        color={color}
-        speed={speed}
-        attach='material'
-        factor={0.6}
-        skinning={undefined}
-        vertexTangents={undefined}
-        morphTargets={undefined}
-        morphNormals={undefined}
-      />
-    </animated.mesh>
+    <>
+      <animated.mesh
+        position={position}
+        ref={mesh}
+        onClick={() => setExpand(!expand)}
+        scale={props.scale}
+        castShadow
+      >
+        <boxBufferGeometry attach='geometry' args={args} />
+        <MeshWobbleMaterial
+          color={color}
+          speed={speed}
+          attach='material'
+          factor={0.6}
+          skinning={undefined}
+          vertexTangents={undefined}
+          morphTargets={undefined}
+          morphNormals={undefined}
+        />
+      </animated.mesh>
 
-    //Using Drei box if you want
-    // <Box {...props} ref={mesh} castShadow>
-    //   <MeshWobbleMaterial
-    //     {...props}
-    //     attach='material'
-    //     factor={0.6}
-    //     Speed={1}
-    //   />
-    // </Box>
+      {/* <Box {...props} ref={mesh} castShadow>
+        <MeshWobbleMaterial {...props} attach='material' factor={0.6} Speed={1} />
+      </Box> */}
+    </>
   );
 };
 
-const Demo = () => {
+const Game = () => {
   return (
     <div id='canvas-container'>
       <Header />
@@ -98,4 +94,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default Game;
