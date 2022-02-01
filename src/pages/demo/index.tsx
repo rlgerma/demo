@@ -1,30 +1,25 @@
-import * as React from "react";
-//R3F
+import { useRef, useState } from "react";
+
 import { Canvas, useFrame } from "@react-three/fiber";
-// Deai - R3F
-import {
-  softShadows,
-  MeshWobbleMaterial,
-  OrbitControls,
-} from "@react-three/drei";
-// React Spring
+
+import { softShadows, MeshWobbleMaterial, OrbitControls } from "@react-three/drei";
+
 import { useSpring, animated } from "@react-spring/three";
-// Styles
-import "@pages/demo/Demo.scss";
-import Header from "@components/Header/Header";
+
+import Header from "../../components/Header";
 
 // soft Shadows
 softShadows();
 
 const SpinningMesh = ({ position, color, speed, args }: any) => {
   //ref to target the mesh
-  const mesh: any = React.useRef();
+  const mesh: any = useRef();
 
   //useFrame allows us to re-render/update rotation on each frame
   useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
 
   //Basic expand state
-  const [expand, setExpand] = React.useState(false);
+  const [expand, setExpand] = useState(false);
   // React spring expand animation
   const props = useSpring({
     scale: expand ? 1.4 : 1,
@@ -37,11 +32,11 @@ const SpinningMesh = ({ position, color, speed, args }: any) => {
       scale={props.scale}
       castShadow
     >
-      <boxBufferGeometry attach="geometry" args={args} />
+      <boxBufferGeometry attach='geometry' args={args} />
       <MeshWobbleMaterial
         color={color}
         speed={speed}
-        attach="material"
+        attach='material'
         factor={0.6}
         skinning={undefined}
         vertexTangents={undefined}
@@ -64,7 +59,7 @@ const SpinningMesh = ({ position, color, speed, args }: any) => {
 
 const Demo = () => {
   return (
-    <div id="canvas-container">
+    <div id='canvas-container'>
       <Header />
       {/* Our Scene & Camera is already built into our canvas */}
       <Canvas shadows camera={{ position: [-5, 2, 10], fov: 60 }}>
@@ -88,22 +83,13 @@ const Demo = () => {
         <pointLight position={[0, -10, 0]} intensity={1.5} />
         <group>
           {/* This mesh is the plane (The floor) */}
-          <mesh
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -3, 0]}
-            receiveShadow
-          >
-            <planeBufferGeometry attach="geometry" args={[100, 100]} />
-            <shadowMaterial attach="material" opacity={0.3} />
+          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} receiveShadow>
+            <planeBufferGeometry attach='geometry' args={[100, 100]} />
+            <shadowMaterial attach='material' opacity={0.3} />
           </mesh>
-          <SpinningMesh
-            position={[0, 1, 0]}
-            color="purple"
-            args={[3, 2, 1]}
-            speed={2}
-          />
-          <SpinningMesh position={[-2, 1, -5]} color="red" speed={6} />
-          <SpinningMesh position={[5, 1, -2]} color="blue" speed={6} />
+          <SpinningMesh position={[0, 1, 0]} color='purple' args={[3, 2, 1]} speed={2} />
+          <SpinningMesh position={[-2, 1, -5]} color='red' speed={6} />
+          <SpinningMesh position={[5, 1, -2]} color='blue' speed={6} />
         </group>
         {/* Allows us to move the canvas around for different prespectives */}
         <OrbitControls />
